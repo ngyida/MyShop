@@ -1,0 +1,17 @@
+const express = require("express")
+const cors = require("cors")
+const env = require('dotenv')
+const routes = require('./routes.js')
+
+env.config()
+const PORT = process.env.PORT || 8000
+
+const app = express()
+app.use(cors())
+app.use(express.json())
+
+app.use('/myShop', routes)
+
+app.listen(PORT, () => console.log(`Server running on port ${PORT}`))
+
+
