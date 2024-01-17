@@ -1,6 +1,7 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
 import { products } from "../data/products"
+import { ShoppingCartOutlined } from "@ant-design/icons"
 import './products.css'
 
 const Products = ({ userEmail, addToCart }) => {
@@ -16,9 +17,14 @@ const Products = ({ userEmail, addToCart }) => {
     };
 
     return (
-        <div>
-            <h1>Welcome to MyShop, {userEmail}</h1>
-            <button onClick={() => buyProduct()}>Cart</button>
+        <>
+            <header className="App-header">
+                <h1>Welcome to MyShop, {userEmail}</h1>
+                <button className="cart-button" onClick={() => buyProduct()}>
+                    <ShoppingCartOutlined/>
+                </button>
+            </header>
+            
             {products.map(prod => (
                 <div className="product" key={prod.id}>
                 <section>
@@ -32,7 +38,7 @@ const Products = ({ userEmail, addToCart }) => {
                 <img src={prod.img} alt={prod.name} />
                 </div>
             ))}
-        </div>
+        </>
     )
 }
 
