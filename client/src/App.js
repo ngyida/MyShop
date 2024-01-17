@@ -7,12 +7,13 @@ import Products from "./pages/products"
 import Login from "./pages/login";
 
 function App() {
-  const [product, setProduct] = useState(null)
+  const [cart, setCart] = useState([])
   const [userEmail, setUserEmail] = useState(null)
    
-  const setProductWrapper = (product) => { 
-    setProduct(product)
+  const addToCart = (product) => { 
+    setCart(prevList => [...prevList, product]);
   }
+
   const setUserEmailWrapper = (email) => { 
     setUserEmail(email)
   }
@@ -22,8 +23,8 @@ function App() {
       <BrowserRouter>
         <Routes>
           <Route path='/' element={<Login setUserEmail={setUserEmailWrapper}/>}/>
-          <Route path ="/home" element={<Products setProduct={setProductWrapper} />}/>
-          <Route path="/checkout" element={<CheckOut product={product}/>} />
+          <Route path ="/home" element={<Products userEmail={userEmail}  addToCart={addToCart}/>}/>
+          <Route path="/checkout" element={<CheckOut cart={cart}/>} />
           <Route path="/paymentSuccess" element={<PaymentSuccessPage />} />
         </Routes>
       </BrowserRouter>
