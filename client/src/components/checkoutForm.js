@@ -1,8 +1,7 @@
 import React, { useState } from "react";
 import { PaymentElement, useStripe, useElements } from "@stripe/react-stripe-js";
 
-function CheckOutForm(props) {
-  // const { product }= props
+function CheckOutForm() {
   const stripe = useStripe();
   const elements = useElements();
   const [errorMessage, setErrorMessage] = useState(null);
