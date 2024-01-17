@@ -8,7 +8,7 @@ const Products = ({ userEmail, addToCart }) => {
     const navigate = useNavigate()
 
     const buyProduct = async () => {
-        navigate('/checkout')
+        navigate('/cart')
     }
 
     const addProduct = (product) => {
