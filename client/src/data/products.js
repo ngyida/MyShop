@@ -4,7 +4,7 @@ export const products = [
         name: "Alpha Book",
         desc: "First item ever on this site!",
         currency: "SGD",
-        price: "10.00",
+        price: 10.00,
         img: "./book1.avif",
     },
     {
@@ -12,7 +12,7 @@ export const products = [
         name: "Beta Book",
         desc: "Best Seller!",
         currency: "SGD",
-        price: "21.00",
+        price: 21.00,
         img: "./book2.avif",
     },
 ]

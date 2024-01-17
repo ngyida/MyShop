@@ -8,11 +8,19 @@ import Login from "./pages/login";
 import Cart from "./pages/cart";
 
 function App() {
-  const [cart, setCart] = useState([])
+  const [cart, setCart] = useState({
+    items: [],
+    totalPrice: 0,
+    currency: "SGD"
+  })
   const [userEmail, setUserEmail] = useState(null)
    
-  const addToCart = (product) => { 
-    setCart(prevList => [...prevList, product]);
+  const addToCart = (item) => { 
+    setCart(prevCart => ({
+      ...prevCart,
+      items: [...prevCart.items, item],
+      totalPrice: prevCart.totalPrice + item.price,
+    }));  
   }
 
   const setUserEmailWrapper = (email) => { 

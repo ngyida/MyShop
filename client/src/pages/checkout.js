@@ -3,7 +3,7 @@ import { loadStripe } from '@stripe/stripe-js';
 import { Elements } from '@stripe/react-stripe-js';
 import CheckoutForm from '../components/checkoutForm'
 
-const Checkout = ({ product, }) => {
+const Checkout = ({ cart }) => {
     const [clientSecret, setClientSecret] = useState(null)
     const [stripePromise, setStripPromise] = useState(null)
 
@@ -14,7 +14,7 @@ const Checkout = ({ product, }) => {
               {
                 method: "POST",
                 headers: { "Content-Type": "application/json", },
-                body: JSON.stringify({currency: product.currency, amount: parseInt(product.price*100), options: null})
+                body: JSON.stringify({currency: cart.currency, amount: cart.totalPrice*100, options: null})
               })
               .then((r) => r.json()))
               .client_secret
@@ -27,16 +27,16 @@ const Checkout = ({ product, }) => {
             setStripPromise(stripePromise)
         }
 
-        if (product != null) { 
+        if (cart.items.length != 0) { 
             getClientSecret() 
             getStripe()
         }
-    }, [product])
+    }, [cart])
 
     return (
         clientSecret == null || stripePromise == null ? "Loading checkout page..." :
         <Elements stripe={stripePromise} options={{ clientSecret: clientSecret }}>
-            <CheckoutForm product={product} />
+            <CheckoutForm/>
         </Elements>
     )
 }

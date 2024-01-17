@@ -6,7 +6,7 @@ const Cart = ({ cart }) => {
   const navigate = useNavigate()
 
   const checkout = () => {
-    alert('Checkout successful');
+    navigate('/checkout')
   };
 
   const back = () => {
@@ -17,7 +17,7 @@ const Cart = ({ cart }) => {
     <div>
       <h1>Cart</h1>
       <ul>
-        {cart.map((product) => (
+        {cart.items.map((product) => (
           <li key={product.id}>
             {product.name} - ${product.price}
           </li>
